@@ -12,8 +12,9 @@ The old API is presented in port 5000 and exposes the following methods
 
 ## New API definition
 
-The new API has to be presented in port 50001 and is required to have the following methods:
+The new API has to be presented in port 50001 and is required to have the following methods (each with preference over the next):
 
     /users               returns a list with all users in the system
-    /users?type=<string> returns a list with all users with that particular type
+    /users?name=<string> returns the user with that particular name, error 404 if none found
+    /users?type=<string> returns a list with all users with that particular type, empty list if none found
   
