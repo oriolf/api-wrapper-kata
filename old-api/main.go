@@ -7,21 +7,20 @@ import (
 )
 
 func main() {
+	var err error
+	allUsersMarshalled, err = json.Marshal(allUsers)
+	if err != nil {
+		log.Fatalln("Error marshaling users response:", err)
+	}
+
 	http.HandleFunc("/users", usersHandler)
 
 	log.Fatalln(http.ListenAndServe(":5000", nil))
 }
 
 func usersHandler(w http.ResponseWriter, r *http.Request) {
-	js, err := json.Marshal(allUsers)
-	if err != nil {
-		log.Println("Error marshaling users response:", err)
-		http.Error(w, "", http.StatusInternalServerError)
-		return
-	}
-
 	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	w.Write(allUsersMarshalled)
 }
 
 var (
@@ -31,4 +30,6 @@ var (
 		map[string]interface{}{"name": "user2", "type": "type1"},
 		map[string]interface{}{"name": "user3", "type": "type1"},
 	}
+
+	allUsersMarshalled []byte
 )

@@ -2,7 +2,7 @@
 
 In this kata we propose a simple user API, and ask the user to augment and enhance it to offer more functionality. 
 
-The success of the kata is achieved if "go test" passes with zero errors.
+The success of the kata is achieved if `./check-solution.sh {{ solution folder }}` passes with zero errors. Inside the solution folder should be a script `run.sh` which starts the new API server.
 
 ## Old API
 
@@ -12,7 +12,7 @@ The old API is presented in port 5000 and exposes the following methods
 
 ## New API definition
 
-The new API has to be presented in port 50001 and is required to have the following methods (each with preference over the next):
+The new API has to be presented in port 5001 and is required to have the following methods (each with preference over the next):
 
     /users               returns a list with all users in the system
     /users?name=<string> returns the user with that particular name, error 404 if none found
